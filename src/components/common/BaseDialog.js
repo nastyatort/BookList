@@ -10,10 +10,7 @@ export default class BaseDialog extends React.Component {
         }
     }
 
-
     openDialog = () => this.setState({isDialogOpen: true})
-
-
 
     renderDialogContent() {
     }
