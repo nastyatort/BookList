@@ -17,7 +17,7 @@ body {
   .row__item {
     border: 1px solid;
     padding: 10px 10px;
-    width: 160px; }
+    width: 140px; }
     .row__item.buttons {
       display: flex;
       align-items: center;
