@@ -1,23 +1,35 @@
 import React from 'react';
 
-import {default as Add} from "../dialogs/Add";
-import {default as Edit} from "../dialogs/Edit";
-import {default as Delete} from "../dialogs/Delete";
+import  { default as BaseRow }  from "../common/BaseRow"
 
 export default class Board extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            rows: []
+        };
 
+        this.deleteRows = (deleteIndex) => {
+            console.log(deleteIndex);
+            let arr = this.state.rows;
+                arr.splice(deleteIndex, 1);
+            this.setState({rows: arr})
+        }
+
+        for(let i = 0; i < 5; i++){
+            this.state.rows[i] = <BaseRow
+                key={i}
+                index={i}
+                rows={this.state.rows}
+                deleteRows = {this.deleteRows}
+            />
         }
     }
 
     render(){
         return(
-            <div className='buttons'>
-            <button></button>
-            <button></button>
-            <button></button>
+            <div>
+            {this.state.rows}
             </div>
         )
     }

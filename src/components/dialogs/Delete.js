@@ -1,22 +1,33 @@
 import React from "react";
-import {default as Field} from "../common/form/Field";
 import {default as BaseDialog} from "../common/BaseDialog";
 
 export default class Add extends BaseDialog {
+    constructor(props){
+        super(props);
+        this.state = {
+            isDialogOpen: false
+        }
+        this.handleClose = this.handleClose.bind(this);
+    }
+
     dialogProps() {
         return {
-            width: 600,
-            height: 300,
+            width: 200,
+            height: 200,
             className: ""
         }
     }
+
+
+    handleClose = () => this.setState({isDialogOpen: false})
 
     renderDialogContent() {
         return (
             <div>
                 <h2>Delete</h2>
-                <Field component={Field} name="Name" type="text" readonly="" label="name"/>
-                <Field component={Field} name="Last" type="text" readonly="" label="name 1"/>
+                <p>Are you sure?</p>
+                <button onClick={() => { this.props.deleteData()}}>Ok</button>
+                <button onClick={this.handleClose}>Cancel</button>
             </div>
         );
     }

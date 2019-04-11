@@ -5,6 +5,6 @@ import './js/rainbows.js';
 import './js/unicorns.js';
 import './scss/base.scss';
 
-import  { default as BaseRow }  from "./components/common/BaseRow"
+import  { default as Board }  from "./components/table/Board"
 
-ReactDOM.render(<BaseRow/>, document.getElementById("root"));
+ReactDOM.render(<Board/>, document.getElementById("root"));

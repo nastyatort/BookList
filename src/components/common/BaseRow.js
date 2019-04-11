@@ -6,6 +6,7 @@ import {default as Edit} from "../dialogs/Edit";
 export default class BaseRow extends React.Component {
     constructor(props) {
         super(props);
+        this.deleteIndex = '';
         this.state = {
             firstName: 'NAME',
             lastName: 'LAST'
@@ -20,8 +21,9 @@ export default class BaseRow extends React.Component {
     }
 
 
-    render(){
-        return(
+
+    render() {
+        return (
             <div className="row">
                 <div className="row__item">
                     {this.state.firstName}
@@ -31,12 +33,13 @@ export default class BaseRow extends React.Component {
                 </div>
                 <div className="row__item buttons">
                     <Add name="Add"/>
-                    <Delete name="Delete"/>
-                    <Edit name="Edit"
-                          firstName={this.state.firstName}
-                          lastName={this.state.lastName}
-                          updateData={this.updateData}
-                          cancelData={this.cancelData}/>
+                    <button onClick={() => {this.props.deleteRows(this.props.index)}}>Delete</button>
+                    <Edit
+                        name="Edit"
+                        firstName={this.state.firstName}
+                        lastName={this.state.lastName}
+                        updateData={this.updateData}
+                    />
                 </div>
             </div>
         )
