@@ -1,35 +1,62 @@
 import React from 'react';
 
-import  { default as BaseRow }  from "../common/BaseRow"
+import {default as BaseRow} from "../common/BaseRow"
 
-export default class Board extends React.Component{
+export default class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: []
+            rows: [],
+            arrLang: 5
         };
 
         this.deleteRows = (deleteIndex) => {
-            console.log(deleteIndex);
             let arr = this.state.rows;
-                arr.splice(deleteIndex, 1);
+            arr.splice(deleteIndex, 1);
             this.setState({rows: arr})
         }
 
-        for(let i = 0; i < 5; i++){
+        this.addRows = () => {
+            let arr = this.state.rows;
+            let arrLang = this.state.arrLang;
+            console.log(arr);
+            arr.push(
+                <BaseRow
+                    key={this.state.arrLang++}
+                    index={this.state.arrLang++}
+                    rows={this.state.rows}
+                    deleteRows={this.deleteRows}
+                />
+            );
+            console.log(arr);
+            arrLang++;
+            this.setState({rows: arr, arrLang: arrLang})
+        }
+
+        for (let i = 0; i < this.state.arrLang; i++) {
             this.state.rows[i] = <BaseRow
                 key={i}
                 index={i}
                 rows={this.state.rows}
-                deleteRows = {this.deleteRows}
+                deleteRows={this.deleteRows}
             />
         }
     }
 
-    render(){
-        return(
+
+    render() {
+        return (
             <div>
-            {this.state.rows}
+                <div>
+                    {this.state.rows}
+                </div>
+
+                <button onClick={() => {
+                    this.addRows()
+                }}>Add
+                </button>
+
+
             </div>
         )
     }
