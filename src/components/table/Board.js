@@ -7,37 +7,54 @@ export default class Board extends React.Component {
         super(props);
         this.state = {
             rows: [],
-            arrLang: 5
+            arrLeng: 5,
         };
 
         this.deleteRows = (deleteIndex) => {
             let arr = this.state.rows;
-            arr.splice(deleteIndex, 1);
-            this.setState({rows: arr})
+            let arrLang = this.state.arrLeng;
+
+            delete arr[deleteIndex];
+
+            console.log('delete index = ' + deleteIndex);
+            console.log('delete lang = ' + arrLang);
+            console.log(arr);
+            this.setState({rows: arr, arrLeng: arrLang})
+
+            for (let i = 0; i < arrLang; i++) {
+                console.log('i = ' + i);
+            }
         }
+
+
 
         this.addRows = () => {
             let arr = this.state.rows;
-            let arrLang = this.state.arrLang;
-            console.log(arr);
+            let arrLang = this.state.arrLeng;
             arr.push(
                 <BaseRow
-                    key={this.state.arrLang++}
-                    index={this.state.arrLang++}
-                    rows={this.state.rows}
+                    key={this.state.arrLeng}
+                    index={this.state.arrLeng}
                     deleteRows={this.deleteRows}
                 />
             );
             console.log(arr);
             arrLang++;
-            this.setState({rows: arr, arrLang: arrLang})
+            console.log('add lang = ' + arrLang);
+            this.setState({rows: arr, arrLeng: arrLang})
+
+            for (let i = 0; i < arrLang; i++) {
+                console.log('i = ' + i)
+            }
         }
 
-        for (let i = 0; i < this.state.arrLang; i++) {
+
+
+        for (let i = 0; i < this.state.arrLeng; i++) {
+            console.log(i);
             this.state.rows[i] = <BaseRow
                 key={i}
                 index={i}
-                rows={this.state.rows}
                 deleteRows={this.deleteRows}
             />
         }

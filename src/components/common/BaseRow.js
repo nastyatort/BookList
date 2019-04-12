@@ -4,7 +4,6 @@ import {default as Edit} from "../dialogs/Edit";
 export default class BaseRow extends React.Component {
     constructor(props) {
         super(props);
-        this.deleteIndex = '';
         this.state = {
             firstName: 'NAME',
             lastName: 'LAST'
